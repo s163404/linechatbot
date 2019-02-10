@@ -16,12 +16,15 @@ import os
 # 軽量なアプリケーションフレームワーク：Flask
 app = Flask(__name__)
 
+#環境変数取得
+YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
+YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 # 環境変数からアクセストークンを設定
-# line_bot_api = LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN')
-line_bot_api = LineBotApi('Tn4s4pPIU4UgRVP19wXHLT8xUbDgmpwzeWT4ReE/GMdTTj9NC2zCg2YCJomZ8yKV1NaVXooE1G883dbUziEYPv60bofHHnflyGT7kEspt7bfxo3EBUrg2w4hJL6rhTOuaYRJwDNGO8UAfZWiko4D4AdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
+# line_bot_api = LineBotApi('Tn4s4pPIU4UgRVP19wXHLT8xUbDgmpwzeWT4ReE/GMdTTj9NC2zCg2YCJomZ8yKV1NaVXooE1G883dbUziEYPv60bofHHnflyGT7kEspt7bfxo3EBUrg2w4hJL6rhTOuaYRJwDNGO8UAfZWiko4D4AdB04t89/1O/w1cDnyilFU=')
 # 環境変数からチャンネルシークレットを設定
-# handler = WebhookHandler('YOUR_CHANNEL_SECRET')
-handler = WebhookHandler('e85520b00d4e6f0ca9b37524dd0670a2')
+handler = WebhookHandler(YOUR_CHANNEL_SECRET)
+# handler = WebhookHandler('e85520b00d4e6f0ca9b37524dd0670a2')
 
 
 @app.route("/callback", methods=['POST'])
