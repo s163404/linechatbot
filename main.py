@@ -50,7 +50,6 @@ def callback():
 def handle_message(event):
     text = event.message.text
 
-
     # あいさつリプライ
     # 拾うあいさつ集を作って辞書化する ->後日実装
     if text == 'おはよう' or 'こんにちは' or 'こんばんは':
@@ -61,8 +60,7 @@ def handle_message(event):
             TextSendMessage(text=reply_text))
     else:
         line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=" " + text + " なんだよなあ"))
+            event.reply_token, TextSendMessage(text=" " + event.message.text + " なんだよなあ"))
 
 
 if __name__ == "__main__":
