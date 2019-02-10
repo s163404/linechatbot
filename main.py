@@ -57,7 +57,7 @@ def handle_message(event):
 
     # あいさつリプライ
     # 拾うあいさつ集を作って辞書化する ->後日実装
-    if text == 'おはよう' or 'こんにちは' or 'こんばんは':
+    if text == "おはよう":
         temp = "fsouhs"
     #     hour_now = datetime.datetime.now().hour + 9 
     #    reply_text = 'おは！' if hour_now >= 4 and hour_now <= 10 else 'お昼食べた？' if hour_now >= 11 and hour_now <= 16 else 'こんばんは'
