@@ -12,6 +12,7 @@ from linebot.models import (
 )
 
 import os
+import datetime
 
 # 軽量なアプリケーションフレームワーク：Flask
 app = Flask(__name__)
@@ -47,9 +48,23 @@ def callback():
 # MessageEvent
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text='「' + event.message.text + '」なんだよなあ～'))
+    text = event.message.text
+
+
+    # あいさつリプライ
+    # 拾うあいさつ集を作って辞書化する ->後日実装
+    if text == 'おはよう' or 'こんにちは' or 'こんばんは':
+        hour_now = datetime.datetime.now().hour
+        reply_text = 'おは！' if hour_now >= 4 and hour_now <= 10 else 'お昼食べた？' if hour_now >= 11 and hour_now <= 16 else 'こんばんは'
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=reply_text))
+    
+    # Echoリプライ
+    else:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=" " + text + " なんだよなあ"))
 
 
 if __name__ == "__main__":
