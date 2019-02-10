@@ -62,11 +62,10 @@ def handle_message(event):
         reply_text = 'おは！' if hour_now >= 4 and hour_now <= 10 else 'お昼食べた？' if hour_now >= 11 and hour_now <= 16 else 'こんばんは'
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=reply_text)
+            TextSendMessage(text=reply_text))
     else:
         line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=text))
+            event.reply_token, TextSendMessage(text=text))
 
 
 if __name__ == "__main__":
