@@ -40,6 +40,11 @@ def callback():
     # handle webhook body
     try:
         handler.handle(body, signature)
+    except LineBotApiError as e:
+        print("Got exception from LINE Messaging API: %s\n" % e.message)
+        for m in e.error.details:
+            print("  %s: %s" % (m.property, m.message))
+        print("\n")
     except InvalidSignatureError:
         abort(400)
 
@@ -62,7 +67,7 @@ def handle_message(event):
     else:
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=event.message.text))
+            TextSendMessage(text=text))
 
 
 if __name__ == "__main__":
