@@ -59,8 +59,8 @@ def handle_message(event):
     #         event.reply_token,
     #         TextSendMessage(text=reply_text))
     # else:
-        line_bot_api.reply_message(
-            event.reply_token, TextSendMessage(text=" " + event.message.text + " なんだよなあ"))
+    line_bot_api.reply_message(
+        event.reply_token, TextSendMessage(text=" " + event.message.text + " なんだよなあ"))
 
 
 if __name__ == "__main__":
