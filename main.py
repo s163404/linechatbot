@@ -59,7 +59,7 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=reply_text))
     
-    if text == r".+":
+    if text == "も":
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=text))
