@@ -9,6 +9,7 @@ from linebot.exceptions import (
 )
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
+    StickerMessage, StickerSendMessage
 )
 
 import os
@@ -66,6 +67,16 @@ def handle_message(event):
     else:
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=text))
+
+
+@handler.add(MessageEvent, message=StickerMessage)
+def handle_sticker_message(event):
+    line_bot_api.reply_message(
+        event.reply_token,
+        StickerSendMessage(
+            package_id=event.message.package_id,
+            sticker_id=event.message.sticker_id)
+    )
 
 
 if __name__ == "__main__":
